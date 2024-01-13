@@ -112,6 +112,7 @@ header {
   background-color: #252525c9;
   display: none;
   text-align: center;
+  overflow-y: auto;
 }
 .hight-img {
   margin-top: 3rem;
@@ -148,10 +149,17 @@ header {
 
 /* Media Query for Phone */
 @media only screen and (max-width: 480px) {
+  header {
+    line-height: 38px;
+    font-size: 0.9rem;
+  }
   .card {
     width: 95%;
     margin-right: 2.5%;
     margin-left: 2.5%;
+  }
+  .search-input {
+    width: 295px;
   }
   .close-modal {
     padding: 6px 22px;
