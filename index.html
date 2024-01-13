@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <!-- Header -->
     <header>
       <h2>Welcome, let's find you some pictures</h2>
     </header>
+    <!-- section containing form elements -->
     <section class="form-container">
       <input class="search-input" type="text" />
       <button class="search-btn">Search</button>
     </section>
+    <!-- The section where the content from the data will be loaded -->
     <section class="result-container">
       <!-- <div class="card">
         <img
@@ -27,38 +30,28 @@
         <div class="card-footer">
           <p class="img-info">Like: 23</p>
         </div>
-      </div>
-      <div class="card">
-        <img
-          class="card-img"
-          src="https://4ddig.tenorshare.com/images/mac-data-recovery/hidden-files.jpg?w=800&h=471"
-          alt=""
-        />
-        <div class="card-body">
-          <p class="img-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-        </div>
-        <div class="card-footer">
-          <p class="img-info">Like: 23</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          class="card-img"
-          src="https://4ddig.tenorshare.com/images/mac-data-recovery/hidden-files.jpg?w=800&h=471"
-          alt=""
-        />
-        <div class="card-body">
-          <p class="img-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-        </div>
-        <div class="card-footer">
-          <p class="img-info">Like: 23</p>
-        </div>
       </div> -->
     </section>
+    <!-- The part that will appear at the bottom of the loaded page -->
     <section class="result-info">
       <button class="show-more">Show More</button>
       <div class="totalt-and-wievs"></div>
     </section>
+    <!-- When any image is clicked, it will open in this area within the modal. -->
+    <section>
+      <div class="modal-img">
+        <img
+          class="hight-img"
+          src="https://4ddig.tenorshare.com/images/mac-data-recovery/hidden-files.jpg?w=800&h=471"
+          alt=""
+        />
+        <div>
+          <button class="close-modal">Close</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Script files -->
     <script src="./app.js"></script>
   </body>
 </html>

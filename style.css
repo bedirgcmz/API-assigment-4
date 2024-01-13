@@ -104,8 +104,36 @@ header {
   justify-content: center;
   align-items: center;
 }
+.modal-img {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #252525c9;
+  display: none;
+  text-align: center;
+}
+.hight-img {
+  margin-top: 3rem;
+  width: 90vw;
+  z-index: 999;
+}
+.modal-img div {
+  text-align: center;
+  margin-top: 20px;
+}
+.close-modal {
+  padding: 12px 40px;
+  background-color: #ffb5a7;
+  color: #4e4c4c;
+  position: absolute;
+  top: 66px;
+  right: 7%;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
 
-/* Tablet için Medya Sorgusu */
+/* Media Query for Tablet */
 @media only screen and (max-width: 768px) {
   .result-container {
     flex-wrap: wrap;
@@ -118,11 +146,14 @@ header {
   }
 }
 
-/* Telefon için Medya Sorgusu */
+/* Media Query for Phone */
 @media only screen and (max-width: 480px) {
   .card {
     width: 95%;
     margin-right: 2.5%;
     margin-left: 2.5%;
+  }
+  .close-modal {
+    padding: 6px 22px;
   }
 }

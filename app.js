@@ -1,9 +1,12 @@
-// DOm elements
+// DOM elements
 const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector(".search-btn");
 const resultContainer = document.querySelector(".result-container");
 const showMoreBtn = document.querySelector(".show-more");
 const totaltAndWievs = document.querySelector(".totalt-and-wievs");
+const modal = document.querySelector(".modal-img");
+const hightImg = document.querySelector(".hight-img");
+const closeModal = document.querySelector(".close-modal");
 
 // Variables
 let page = 1;
@@ -11,10 +14,9 @@ let userValue;
 let count = 0;
 let totaltResult = 0;
 const accesKey = "J9Nua5aORT05UcKcu_GC02cjhpuka1HsY__REAEVKhc";
-const secretKey = "ETwU7kN5asdKGbOew52YpUrGq6Aa24tcpBtqbQqiRK8";
 const API_unsplash = `https://api.unsplash.com/search/photos`;
 
-// Getting data funtion
+// Function that brings data with Search and Show More buttons
 const getData = async () => {
   try {
     userValue = searchInput.value;
@@ -23,10 +25,6 @@ const getData = async () => {
     const res = await fetch(url);
     const data = await res.json();
     if (data.results.length > 0) {
-      if (count == 0) {
-        resultContainer.innerHTML = "";
-        console.log("girdim");
-      }
       showResult(data.results);
       count++;
       page++;
@@ -36,8 +34,6 @@ const getData = async () => {
       showMoreBtn.disabled = false;
       showMoreBtn.innerText = "Show More";
       showMoreBtn.style.backgroundColor = "#ffb5a7";
-      console.log(data.total);
-      console.log(totaltResult);
       if (data.total == totaltResult) {
         showMoreBtn.disabled = true;
         showMoreBtn.innerText = "It's over, there's no more!";
@@ -61,14 +57,18 @@ const getData = async () => {
   }
 };
 
+// Function that prints incoming data into html elements
 const showResult = (pData) => {
+  console.log(typeof pData);
   const htmlArray = pData.map((image, index) => {
+    console.log(image.id);
     return `
           <div key=${index} class="card">
             <img
               class="card-img"
               src="${image.urls.regular}"
               alt="${image.alt_description}"
+              onclick="displayHighImg('${image.id}')"
             />
             <div class="card-body">
               <p class="img-description"><b>Definition:</b> ${image.alt_description}</p>
@@ -87,15 +87,42 @@ const showResult = (pData) => {
         `;
   });
   resultContainer.innerHTML += htmlArray.join("");
-  console.log("sonus fonk calsiti");
 };
 
+// Search button handle click
 searchBtn.addEventListener("click", () => {
   resultContainer.innerHTML = "";
   getData();
   page = 1;
   totaltResult = 0;
 });
+
+// Show More button handle click
 showMoreBtn.addEventListener("click", () => {
   getData();
+});
+
+// Function that opens the image within the model when the image is clicked
+const displayHighImg = (pId) => {
+  const url = `https://api.unsplash.com/photos/${pId}?client_id=${accesKey}`;
+
+  const getImg = async () => {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data) {
+        hightImg.src = `${data.urls.regular}`;
+        modal.style.display = "block";
+      }
+      console.log(data.urls);
+    } catch (error) {
+      modal.innerHTML = `<p>Obss! Something went wrong.</p>`;
+    }
+  };
+  getImg();
+};
+
+// Function that closes the modal structure
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
 });
